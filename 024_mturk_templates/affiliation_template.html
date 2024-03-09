@@ -1,0 +1,180 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<div style="display:flex; flex-direction:row; height:800px;">
+    <iframe src=${pdf_url} style="flex: 1; height:500px; width:700px;"> 
+    </iframe>
+    <crowd-form answer-format="flatten-objects" style="padding-left:30px; padding-bottom:10px; flex:1; float:right;">
+      <crowd-instructions link-text="View instructions" link-type="button">
+        <short-summary>
+          <p>The following tasks are for processing the metadata of an academic journal article</p>
+        </short-summary>
+    
+        <detailed-instructions>
+          <h3>Detailed instructions</h3>
+          <p>Given the pdf of an academic journal article on the left. Please find and record the listed author's affiliations.</p>
+          <p><strong>What is an affiliation and where to find it.</strong></p>
+          <ul>
+              <li>The affiliation of an author can be a University e.g. University of California, Los Angeles. Or it could be a company e.g. Google</li>
+              <li>Some papers in this set are exceptionally old and will only show a location as the affiliation eg: "Chicago" without any institution attached, please just digitize "Chicago"</li>
+              <li>Please note that cases like "University of California, Berkeley" is a single affiliation, not separate. The Berkeley is necessary to differentiate it from "University of California, Los Angeles" which is a completely different institution.</li>
+              <li>The department and the university that department or school belongs to eg: "Graduate school of business, University of Chicago" is a single affiliation. Another example is "The Wharton School, The University of Pennsylvania".</li>
+              <li>Similarly, the addition of a town or city or country specifying the location of the university/institution should also be recorded, eg: "Institute of financial regulations, Stockholm" is a single affiliation</li>
+          </ul>
+          <br>
+          <p><strong>Location of the affiliations, this is batch specific. PLEASE TAKE NOTE.</strong></p>
+          <ul>    
+              <li>The location of affiliations of an author or authors are varies in this batch, it can after the <strong>conclusions</strong> of the journal article just above the appendix section.</li>
+              <li>The affiliations can also be above the <strong>Appendix</strong> section or above the <strong>References</strong> section or at the end of the article.</li>
+              <li>Affiliations can also be at the beginning of an article beneath the author name</li>
+              <li>If none of the above apply. Affiliations can also be found in the footnote of the first page (usually the footnote prefixed by an asterisk). Please be careful not to confuse the acknowledgements with the affiliations which can also be found in the footnote of the first page. Affiliations, if in the footnote, are generally the first sentence.</li>
+              <li>If an article is a "discussion" the affiliations are generally after author name at the beginning of a paragraph of discussion. If the article is a "review", the affiliation is likely to be at the end with the author's name next to it</li>
+              <li>Always double check if the associated author for an affiliation matches the one above the input box. Also, watch out for more than one article in the same pdf.</li>
+          </ul>
+          <p><strong>Dealing with multiple affiliations:</strong></p>
+          <ul>
+              <li>An author may have multiple affiliations, please record each affiliation for an author in it's own input block.</li>
+              <li>If two co-authors have the same affiliations, ie: affiliations occupy a single row. Record the same affiliations for both. Such as: if there are two co-authors and the affiliations are given as "MIT and Stanford", that means that all authors are affiliated with both universities</li>
+              <li>If there are two co-authors and two rows of affiliations separated by a semi-colon(;). Assume that the two rows of the affiliations apply respectively to the authors.</li>
+              <li>If there are two co-authors and two rows of affiliations separated by "and". Similarly, you may assume that the two rows of the affiliations apply respectively to the authors. Note that there may be multiple affiliations in a single row per author, digitize each affiliation separately</li>
+              <li>If there are less rows of affiliations than there are authors, eg: two rows of affiliations and three authors. I recommend either skipping these tasks or googling the authors to check exactly which institutions they have been affiliated with. If you do submit a task like this, note that it is always vetted via google searches.</li>
+              <li>If there are no affiliations, please enter 'None', these will be double checked.</li>
+          </ul>
+          <br>
+          
+          <p><strong>General comments:</strong></p>
+          <ul>
+              <li>Please note: Sometimes you may find in the references section an author's affiliation to a different institution than the one in the article perhaps for an unpublished dissertation. Inclusion of this affiliation is not neccessary, but it's inclusion will not result in rejection. However, please note that observing a citation in the references list that shows an author publishing in a working paper series of a university or institution does not imply an affiliation to that institution.</li>
+              <li>Please note: "Jstor" is not the affiliation</li>
+              <li>If you are unsure, google the author, but please note that I will also google the author if you submit something not found in the text and the incorrect affiliation will result in a rejection.</li>
+          </ul>
+              
+          <br>
+          <p>Please see examples. You can email me at datacollect111@gmail.com if you are unsure of the instructions.</p>
+        </detailed-instructions>
+        <positive-example>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/Above_appendix.jpg" style="width:500px; border:1px solid;"/></p>
+		    <p>
+		        <strong>Affiliations above the appendix:</strong> The affiliation is "Sloan School of Management, MIT" where "Sloan School of Management is the department and "MIT" the university
+		    </p>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/at_the_end.jpg" style="width:500px; border:1px solid;"/></p>
+		    <p>
+		        <strong>Affiliations at the end:</strong> the affiliation is "North Tonawanda, New York", an example of when the <strong>affiliation is a location</strong>.
+		        
+		    </p>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/multi+author+multi+affiliations.jpg" style="width:500px; border:1px solid;"/></p>
+		    <p>
+		        <strong>Affiliations before the references: </strong> This is an affiliation example for <strong>two authors affiliated two different universities</strong>. Notice that the affiliations are on different lines separated by a ";". Assign these affiliations to respective authors in the order that they appear. 
+		    </p>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/single+affiliations+for+many+authors.jpg" style="width:500px; border:1px solid;"/></p>
+		    <p>
+		        <strong>Affiliations before the references:</strong> This is a case of <strong>multiple affiliations for a single author</strong>. Please put each affiliation in a separate input box. 
+		    </p>
+		  </positive-example>
+		  <negative-example>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/acknowl_ex.jpg" style="width:500px; border:1px solid;"/></p>
+		    <p>
+		    	You may find this at the bottom of the first page of a journal article. These are acknowledgements are not affiliations.
+		    </p>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/fn_mistake.jpg" style="width:500px; border:1px solid;"/></p>
+		    <p>
+		    	Notice the second to last line is the affiliation, but the last line is a footnote. A footnote generally starts with a number or an asterisk, be careful not to mistake a footnote for affiliations.
+		    </p>
+		    
+		  </negative-example>
+      </crowd-instructions>
+        <div >
+          <p><strong>Instructions: </strong>
+          Given the pdf of an academic journal article on the left with the title: ${title} 
+          <br>Please find and record the listed author's affiliations. 
+          <strong>Please Read the detailed instructions for this batch, it is always different from the previous batches.</strong>
+          </p>
+          <div>
+            <p><strong>Enter the affiliations for each author</strong></p>
+            <div id="container">
+            </div>
+          </div>    
+        </div>
+        <p><crowd-button form-action="submit" style="border-radius:10px">Submit</crowd-button></p>
+    </crowd-form>
+    <!--</form>-->
+</div>
+<script>
+    var style="padding: 10px; margin:10px 0; border: 2px solid #eee;  border-radius:10px;  box-shadow:0 0 15px 4px rgba(0,0,0,0.06); width:300px"
+    var but_style="padding: 5px; margin:10px 0; border: 1px solid;  border-radius:10px;  box-shadow:0 0 15px 4px rgba(0,0,0,0.06); width:30px"
+    var authorNames="${authors}"
+    var authorArray=authorNames.split(';')
+    var index_holder={}
+    authorArray.forEach((value, i) => {
+        var div=document.createElement('div');
+        div.setAttribute("id","Div_"+i);
+        index_holder[i]=[0,1]
+        div.innerHTML='<div id="Div_'+i+'_1"><p>'+i+'. '+value+'</p><input type="text" id="child_' + i+'_1" name="child_'+i+'_1" style="'+style+'"> <input type="button" name="button" id="'+i+'_1" style="'+but_style+'" onclick="addkid(this.id)" value="+"/></div>'
+        document.getElementById('container').appendChild(div);
+    })
+    console.log(index_holder)
+    
+    function addkid(check) {
+      x=check.split('_')
+      var div = document.createElement('div');
+      var id = getID(x[0]);
+      console.log(id)
+      // Set this attritube id so that we can access this element using Id 
+      div.setAttribute("id","Div_"+x[0]+'_'+id);
+      
+      div.innerHTML = '<input type="text" id="child_' + x[0]+'_'+id+'" name="child_' + x[0]+'_'+id + '" style="'+style+'"/>' + ' <input type="button" name="button" id="'+x[0]+'_' + id + '" style="'+but_style+'" onclick="addkid(this.id)" value="+" />' + ' <input type="button" name="button" id="rem_kid()_' + id + '" style="'+but_style+'" onclick="remkid('+x[0]+','+id+')" value="-" />';
+      // inside of passing this parameter in remkid we pass id number
+      console.log(x[0]+'_'+id)
+      document.getElementById('Div_'+x[0]).appendChild(div);
+    }
+       
+    function remkid(i, id) {
+    // use the id arugment to get the div element using unique id set in addkid
+      try{
+        var element = document.getElementById("Div_"+i+'_'+id)
+        element.parentNode.removeChild(element);
+        index_holder[i][id] = -1;
+        //id number is = index of the array so we set to -1 to indicate its empty
+        }
+      catch(err){
+        alert("id: Div_"+i+'_'+id)
+        alert(err)
+        
+        }
+    }  
+    function getID(i){
+       var emptyIndex = index_holder[i].indexOf(-1);
+       if (emptyIndex != -1){
+         index_holder[i][emptyIndex] = emptyIndex
+         return emptyIndex
+       } else {
+       emptyIndex = index_holder[i].length
+       index_holder[i].push(emptyIndex)
+       return emptyIndex
+         }
+       }
+    document.querySelector('crowd-form').onsubmit = function(e ) {
+        if (!validateForm()) {
+            e.preventDefault();
+            alert('Please enter affiliations or "none" and delete empty inputs')
+        }
+    }
+    function validateForm(){
+        console.log(index_holder)
+        for([i, j] of Object.entries(index_holder)) {
+            for (let val = 1; val < index_holder[i].length; val++) {
+                if (index_holder[i][val]>0){
+                    var ref=document.getElementById("child_"+i+"_"+index_holder[i][val]).value
+                    if (ref.trim().length === 0){
+                        return false
+                    }    
+                }
+            }
+        }
+        return true
+    }
+</script>

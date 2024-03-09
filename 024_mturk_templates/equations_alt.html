@@ -1,0 +1,96 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<div style="display:flex; flex-direction:row;">
+    <iframe src=${pdf_url} style="flex: 1; height:700px; width:700px;"> 
+    </iframe>
+    <crowd-form answer-format="flatten-objects" style="flex:1">
+        
+      <crowd-instructions link-text="View instructions" link-type="button">
+        <short-summary>
+          <p>The following task is for counting equations on a page from a journal article.</p>
+        </short-summary>
+    
+        <detailed-instructions>
+          <h3>Detailed instructions</h3>
+          <ul>
+              <li>Count the number of equations in the pdf: this includes inline and block equations.</li>
+              <li>In general, equation is a statement that values of two mathematical expressions are equal (indicated by the signs =, >, <, <span>≥</span>, <span>≤</span>, <span>~</span>, <span>≠</span>, <span>≡</span> etc.).</li>
+              <li>An exception is a standalone mathematical statement eg: <strong>3A+2B</strong> without some sort of equals sign. This also counts as an equation.</li>
+              <li>In-line equations are found in a paragraph text.</li>
+              <li>Block equations mean that the equation is found isolated between two paragraphs of text.</li>
+              <li>If an equation is written accross several lines with multiple signs linking several statements, it counts as a single equation.</li>
+              <li>Please continue to the examples tab to see what counts as one equation.</li>    
+          </ul>
+          <br>
+        </detailed-instructions>
+        <positive-example>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/block_and_inline.jpg" style="border: 1px solid; width: 600px;"/></p>
+		    <p><strong>Example 1:</strong> There are 3 equations in the image above, <strong>two in-line equations</strong> in the surrounding text and <strong>single block equation</strong> between the two paragraphs.</p>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/multi-line.jpg" style="border: 1px solid; width: 600px;"/></p>
+		    <p><strong>Example 2:</strong> The above is a <strong>multi-line equation</strong>, notice that there are multiple lines and multiple equal signs equating statements. Despite more that one equal signs this is a single mathematical statement because it relates the first statment <strong>Gm(s)</strong> with the last.</p>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/comma_separated.jpg" style="border: 1px solid; width: 300px;"/></p>
+		    <p><strong>Example 3:</strong> There are two equations in the above screenshot, notice that they are separated by a comma, you will often see commas or semi-colons separating inline equations too.</p>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/inline_diffs.jpg" style="border: 1px solid; width: 600px;"/></p>
+		    <p><strong>Example 4:</strong> There are 3 equations in the image above. The equation highlighted in pink does not have an equals sign but it is a mathematical statement.</p>
+		  </positive-example>
+		  <negative-example>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/what_is_not.jpg" style="border: 1px solid; width: 600px;"/></p>
+		    <p><strong>Example 1:</strong> The items circled in red are not equations even though they are variables in surrounding equations in the page.</p>
+		    <p><img src="https://myawsbucket-1231.s3.eu-west-3.amazonaws.com/number_dont_count.jpg" style="border: 1px solid; width: 300px;"/></p>
+		    <p><strong>Example 2:</strong> Numbers used to refer to equations are not considered equations or numbers quoted from tables in textual paragraphs are not equations.</p>
+		  </negative-example>
+      </crowd-instructions>
+        <div style="display:flex; flex-direction:row">
+            <div style="padding-left:30px; padding-bottom:10px; flex-grow:1">
+              <div>
+                <p>This is page ${page} from article ${id}</p>
+                <p><strong>Instructions: </strong>
+                    <p>Please read the detailed instructions carefully and look at the examples for what counts as a single equation and enter the counts for the following fields.</p>
+                </p>
+                Number of equations:</br>
+                <input name="Eq_count" id="eq" style="padding: 10px; margin:10px 0; border: 2px solid;  border-radius:10px;  box-shadow:0 0 15px 4px rgba(0,0,0,0.06); width:300px" ></input>
+                </br>Number of equals (=) signs:</br>
+                <input name="Equal_count" id="equal" style="padding: 10px; margin:10px 0; border: 2px solid;  border-radius:10px;  box-shadow:0 0 15px 4px rgba(0,0,0,0.06); width:300px" ></input>
+                </br>Number of > or <span>≥</span> signs:</br>
+                <input name="g_count" id="g" style="padding: 10px; margin:10px 0; border: 2px solid;  border-radius:10px;  box-shadow:0 0 15px 4px rgba(0,0,0,0.06); width:300px" ></input>
+                </br>Number of < or <span>≤</span> signs:</br>
+                <input name="l_count" id="l" style="padding: 10px; margin:10px 0; border: 2px solid;  border-radius:10px;  box-shadow:0 0 15px 4px rgba(0,0,0,0.06); width:300px" ></input>
+                </br>Number of other equivalence signs eg: <span>~</span>, <span>≠</span>, <span>≡</span> etc.:</br>
+                <input name="Equiv_count" id="equiv" style="padding: 10px; margin:10px 0; border: 2px solid;  border-radius:10px;  box-shadow:0 0 15px 4px rgba(0,0,0,0.06); width:300px" ></input>
+                
+                </br>
+              </div>
+            </div>
+        </div>
+    </crowd-form>
+</div>
+<script>
+    document.querySelector('crowd-form').onsubmit = function(e ) {
+        if (!validateForm()) {
+            e.preventDefault();
+            alert('Non-numerical character has been entered, please fix it')
+        }
+    }
+    function validateForm(){
+        let ids=['eq', 'equiv', 'equal', 'l', 'g']
+        let val=document.getElementById('eq').value
+        let isnum = /^\d+$/.test(val);
+        let val2=document.getElementById('equiv').value
+        let isnum2 = /^\d+$/.test(val2);
+        let val3=document.getElementById('equal').value
+        let isnum3 = /^\d+$/.test(val3);
+        let val4=document.getElementById('l').value
+        let isnum4 = /^\d+$/.test(val4);
+        let val5=document.getElementById('g').value
+        let isnum5 = /^\d+$/.test(val5);
+        console.log(isnum&isnum2&isnum3&isnum4&isnum5)
+        return isnum&isnum2&isnum3&isnum4&isnum5
+    }
+    
+    
+</script>
