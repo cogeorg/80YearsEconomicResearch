@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Research Paper</title>
+    <!-- Add any additional stylesheets or scripts here -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .button-holder{
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 0;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .click-button {
+            border-radius: 0.5rem;
+            border: 2px solid #ffffff; /* Green */
+            background: #242526;
+            color: white;
+            padding: 0.5rem;
+            min-width: 10rem;
+        }
+    </style>
+</head>
+<body>
+<div class="button-holder">
+    <button class="click-button" onclick="printMath()">Print Math Positions</button>
+    <button class="click-button" onclick="printViewPort()">Capture Viewport</button>
+    <button class="click-button" onclick="printFullPage()">Capture Full Page</button>
+</div>
+
+<h1>Introduction to Thermodynamics and Fluid Dynamics</h1>
+
+<p>Thermodynamics is the branch of physics that deals with the study of energy and its transformations in systems. It encompasses principles governing the behavior of macroscopic systems undergoing changes in temperature, pressure, and volume. One fundamental concept in thermodynamics is the notion of entropy, denoted by \( S \), which quantifies the degree of disorder or randomness in a system. It plays a crucial role in understanding the directionality of natural processes and the feasibility of energy conversions.</p>
+
+<h2>The Laws of Thermodynamics</h2>
+
+<p>Thermodynamics is governed by four fundamental laws, with the zeroth law being added later to complete the framework. The first law, often referred to as the law of conservation of energy, states that energy cannot be created or destroyed, only transformed from one form to another. This is mathematically expressed as: \( \Delta U = Q - W \), where \( \Delta U \) represents the change in internal energy, \( Q \) is the heat added to the system, and \( W \) is the work done by the system.</p>
+
+<p>The second law introduces the concept of entropy and establishes the directionality of natural processes. It states that the entropy of an isolated system tends to increase over time or remain constant in reversible processes, expressed by: \( \Delta S \geq \frac{Q}{T} \), where \( \Delta S \) represents the change in entropy, \( Q \) is the heat added, and \( T \) is the temperature of the system in Kelvin.</p>
+
+<h2>Thermodynamic Processes and Cycles</h2>
+
+<p>Thermodynamic processes describe the transformations of a system's properties, such as temperature, pressure, and volume. These processes can be categorized into various types, including isothermal, adiabatic, isobaric, and isochoric processes, each characterized by specific equations relating to the changes in system parameters. For instance, the work done in an isothermal process is given by: \( W = -nRT \ln\left(\frac{V_f}{V_i}\right) \), where \( W \) is the work done, \( n \) is the number of moles, \( R \) is the gas constant, \( T \) is the temperature, \( V_f \) is the final volume, and \( V_i \) is the initial volume.</p>
+
+<h2>Thermodynamic Equilibrium and State Functions</h2>
+
+<p>In thermodynamics, equilibrium refers to a state where macroscopic properties of a system remain constant over time. Thermodynamic equilibrium is crucial for analyzing and predicting the behavior of systems. State functions, such as internal energy \( U \), enthalpy \( H \), and Gibbs free energy \( G \), are properties of a system that depend only on its current state, not on the path taken to reach that state. These functions play a vital role in determining the feasibility and spontaneity of processes.</p>
+
+<h2>Applications of Thermodynamics</h2>
+
+<p>Thermodynamics finds applications in various fields, including engineering, chemistry, biology, and environmental science. It is essential for designing efficient engines, refrigeration systems, chemical processes, and renewable energy technologies. Understanding thermodynamics enables scientists and engineers to optimize processes, minimize energy losses, and develop sustainable solutions for addressing societal challenges.</p>
+
+<h2>Fluid Dynamics Equations</h2>
+
+<p>Fluid dynamics is another branch of physics that deals with the study of fluids in motion. It involves the analysis of the behavior of fluids (liquids and gases) and their interactions with solid surfaces. Here are seven equations commonly used in fluid dynamics:</p>
+
+<ol>
+    <li>Continuity equation: \( \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0 \)</li>
+
+    <li>Navier-Stokes equation (incompressible flow): \( \rho \left(\frac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v}\right) = -\nabla p + \mu \nabla^2 \mathbf{v} + \rho \mathbf{g} \)</li>
+
+    <li>Navier-Stokes equation (compressible flow): \( \frac{\partial \rho \mathbf{v}}{\partial t} + \nabla \cdot (\rho \mathbf{v} \mathbf{v}) = -\nabla p + \nabla \cdot \mathbf{\tau} + \rho \mathbf{g} \)</li>
+
+    <li>Bernoulli's equation: \( P + \frac{1}{2}\rho v^2 + \rho gh = \text{constant} \)</li>
+
+    <li>Stokes' Law (for viscous drag): \( F_d = 6\pi \mu r v \)</li>
+
+    <li>Reynolds number (dimensionless quantity for flow regime determination): \( Re = \frac{\rho v L}{\mu} \)</li>
+
+    <li>Archimedes' principle (buoyant force): \( F_b = \rho_f V g \)</li>
+</ol>
+
+<h2>Differences Between Fluid Dynamics and Thermodynamics</h2>
+
+<p>While both fluid dynamics and thermodynamics deal with the behavior of physical systems, they differ significantly in focus and scope:</p>
+
+<ol>
+    <li>**Nature of Study**: Thermodynamics primarily focuses on the macroscopic properties of systems undergoing energy transformations, such as heat and work exchanges. In contrast, fluid dynamics delves into the microscopic behavior of fluids in motion, including phenomena like viscosity, turbulence, and flow patterns.</li>
+    <li>**Variables**: Thermodynamics deals with variables such as temperature, pressure, volume, and energy, emphasizing equilibrium states and state functions. Fluid dynamics, on the other hand, considers variables such as velocity, density, viscosity, and pressure gradients, focusing on dynamic processes and transport phenomena.</li>
+    <li>**Equations**: While both fields employ mathematical equations to describe physical phenomena, the equations used in thermodynamics (e.g., laws of thermodynamics, heat transfer equations) are distinct from those used in fluid dynamics (e.g., Navier-Stokes equations, continuity equation).</li>
+    <li>**Applications**: Thermodynamics finds applications in energy conversion systems, refrigeration, and chemical processes, whereas fluid dynamics is essential for understanding fluid flow in engineering applications like aerodynamics, hydrodynamics, and HVAC systems.</li>
+</ol>
+
+<h2>General Equation for Movement</h2>
+
+<p>A general equation describing the movement of objects can be expressed as:</p>
+
+\[ F = m \cdot a \]
+
+<p>where \( F \) is the force applied to an object, \( m \) is its mass, and \( a \) is its acceleration. This equation, known as Newton's second law of motion, forms the foundation for understanding the dynamics of objects in motion.</p>
+
+</body>
+</html>
+<script>
+    let mathPos={
+        "scrollY": null,
+        "scrollX": null,
+        "innerHeight": null,
+        "innerWidth": null,
+        "positions":
+        {}
+    }
+    function printMath(){
+        console.log(mathPos);
+    }
+
+    function getMath(){
+        mathPos["scrollY"]=window.scrollY;
+        mathPos["scrollX"]=window.scrollX;
+        mathPos["innerHeight"]=window.innerHeight;
+        mathPos["innerWidth"]=window.innerWidth;
+        const elements = document.getElementsByClassName("MJX-TEX");
+        for (let i = 0; i < elements.length; i++){
+            const rect=elements[i].getBoundingClientRect();
+            mathPos["positions"][i]={
+                top: rect.top,
+                right: rect.right,
+                bottom: rect.bottom,
+                left: rect.left,
+                width: rect.width,
+                height: rect.height,
+                x: rect.x,
+                y: rect.y
+            }
+        }
+    }
+
+    // html2canvas(document.body).then(function(canvas) {
+    //     document.body.appendChild(canvas);
+    // });
+    function printViewPort() {
+        getMath();
+        const fn = Date.now().toString()
+        console.log(fn)
+        // const captureElement = document.querySelector('body') // Select the element you want to capture. Select the <body> element to capture full page.
+        html2canvas(document.body, {
+                x: window.scrollX,
+                y: window.scrollY,
+                width: window.innerWidth,
+                height: window.innerHeight,
+                })
+            .then(canvas => {
+                canvas.style.display = 'none'
+                document.body.appendChild(canvas)
+                return canvas
+            })
+            .then(canvas => {
+                const image = canvas.toDataURL('image/png')
+                const a = document.createElement('a')
+                a.setAttribute('download', fn+'.png')
+                a.setAttribute('href', image)
+                a.click()
+                canvas.remove()
+            })
+
+            download(mathPos, fn+".json", "application/json") 
+
+    }
+
+    function printFullPage() {
+        // const captureElement = document.querySelector('body') // Select the element you want to capture. Select the <body> element to capture full page.
+        html2canvas(document.body)
+            .then(canvas => {
+                canvas.style.display = 'none'
+                document.body.appendChild(canvas)
+                return canvas
+            })
+            .then(canvas => {
+                const image = canvas.toDataURL('image/png')
+                const a = document.createElement('a')
+                a.setAttribute('download', 'my-image.png')
+                a.setAttribute('href', image)
+                a.click()
+                canvas.remove()
+            })
+    }
+
+    function download(content, fileName, contentType) {
+        console.log('ex')
+        
+        var a = document.createElement("a")
+        a.href = URL.createObjectURL(
+            new Blob([JSON.stringify(content)], {type:contentType})
+        )
+        a.download = fileName
+        a.click()
+    }
+    // download(jsonData, 'test.json', 'text/plain');
+
+    
+    
+</script>
+
