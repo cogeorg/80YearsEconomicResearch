@@ -1,5 +1,7 @@
 /031_recon/*
 .DS_Store
+.vscode/
+venv/
 /000_archive/
 
 *.csv
