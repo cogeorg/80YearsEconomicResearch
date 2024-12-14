@@ -1,1 +1,7 @@
-./031_recon/*
+/031_recon/*
+.DS_Store
+/000_archive/
+
+*.csv
+*.excel
+*.pkl
