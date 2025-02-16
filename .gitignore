@@ -7,3 +7,7 @@ venv/
 *.csv
 *.excel
 *.pkl
+*.json
+*.gexf
+*.png
+*.xlsx
