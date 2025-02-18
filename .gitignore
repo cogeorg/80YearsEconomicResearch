@@ -1,4 +1,3 @@
-/031_recon/*
 .DS_Store
 .vscode/
 venv/
@@ -11,3 +10,5 @@ venv/
 *.gexf
 *.png
 *.xlsx
+*.pdf
+*.svg
